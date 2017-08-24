@@ -6,7 +6,7 @@ RSpec.describe User, type: :model do
   end
 
   it "has many recipes" do
-    @user.recipes.create
+    @user.recipes.create(name: "Test")
     expect(@user.recipes.count).to eq(1)
   end
 
