@@ -14,7 +14,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'devise'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
-gem 'omniauth-github'
+gem 'omniauth-google-oauth2'
 
 group :development, :test do
   gem "rspec-rails"
