@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Ingredient, type: :model do
   before(:each) do
-    @ingredient = Ingredient.first
-    @recipe = Recipe.first
+    @ingredient = Ingredient.create(name: "Apple")
+    @recipe = Recipe.create(user: User.first, name: "Apple Pie")
   end
 
   it "has many recipe ingredients" do
