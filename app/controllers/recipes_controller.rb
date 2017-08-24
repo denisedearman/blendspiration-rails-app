@@ -11,4 +11,18 @@ class RecipesController < ApplicationController
       @recipes = Recipe.all
     end
   end
+
+  def create
+
+  end
+
+  def new
+    @recipe = Recipe.new
+    @ingredients = Ingredient.all
+  end
+
+  private
+
+  def recipe_params
+    params.require(:recipe).permit(:name, :description, recipe_ingredients_attributes: [:quantity, :unit, :ingredient_id])
 end

@@ -1,0 +1,25 @@
+<%= form_for @recipe do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name%>
+
+  <h2>Ingredients</h2>
+  <ul>
+    <% @ingredients.each do |ingredient| %>
+    <li>
+      <%= ingredient.name %><br>
+      <%= f.fields_for :recipe_ingredients, ingredient.recipe_ingredients.build do |rif| %>
+        <%= rif.label :quantity %>
+        <%= rif.number_field :quantity %>
+        <%= rif.label :unit %>
+        <%= rif.select :unit, ['tbs','tsp','cups','quarts','pints','grams','pounds','units'] %>
+        <%= rif.hidden_field :ingredient_id, value: ingredient.id %>
+      <% end %>
+    <% end %>
+  </li>
+  </ul>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+
+
+  <%= f.submit %>
+<% end %>

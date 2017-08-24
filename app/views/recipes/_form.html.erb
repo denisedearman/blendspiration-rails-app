@@ -2,8 +2,16 @@
   <%= f.label :name %>
   <%= f.text_field :name%>
 
-  
-
+  <h2>Ingredients</h2>
+  <% @ingredients.each do |ingredient| %>
+    <p><%= ingredient.name %></p>
+    <%= f.fields_for :recipe_ingredients do |rif| %>
+      <%= rif.label :quantity %>
+      <%= rif.number_field :quantity %>
+      <%= rif.label :unit %>
+      <%= rif.select :unit, ['tbs','tsp','cups','quarts','pints','grams','pounds','units'] %>
+      <%= rif.hidden_field :ingredient_id, ingredient.id %>
+    <% end %>
 
   <%= f.label :description %>
   <%= f.text_area :description %>
