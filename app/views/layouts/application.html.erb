@@ -10,7 +10,7 @@
   <ul>
     <%= link_to "Home", "/" %>
     <% if current_user %>
-      <li>Hello <%= current_user.email %></li>
+      <li>Hello <%= link_to current_user.email, user_recipes_path(current_user) %></li>
       <li><%= link_to "Sign out", destroy_user_session_path , method: "delete"%></li>
     <% else %>
       <li><%= link_to "Sign in", new_user_session_path %></li>
