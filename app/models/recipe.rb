@@ -7,9 +7,10 @@ class Recipe < ApplicationRecord
 
   def recipe_ingredients_attributes=(recipe_ingredient_attributes)
     recipe_ingredient_attributes.values.each do |recipe_ingredient_attribute|
-      binding.pry
-      recipe_ingredient = RecipeIngredient.find_or_create_by(recipe_ingredient_attribute)
-      self.recipe_ingredients << recipe_ingredient
+      if recipe_ingredient_attribute[:quantity] && recipe_ingredient_attribute[:quantity].to_f > 0
+        recipe_ingredient = RecipeIngredient.find_or_create_by(recipe_ingredient_attribute)
+        self.recipe_ingredients << recipe_ingredient
+      end
     end
   end
 end
