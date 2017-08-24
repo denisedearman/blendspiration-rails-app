@@ -7,7 +7,7 @@ class IngredientsController < ApplicationController
   def create
     @ingredient = Ingredient.new(ingredient_params)
     if @ingredient.save
-      redirect_to ingrdients_path
+      redirect_to ingredients_path
     else
       render :new
     end
