@@ -16,7 +16,11 @@ class Recipe < ApplicationRecord
   end
 
   def self.simple_recipes
-    all.joins(:recipe_ingredients).having('COUNT(ingredient_id) < 6').group('recipe_id')
+    all.joins(:recipe_ingredients).having('COUNT(ingredient_id) < 4').group('recipe_id')
+  end
+
+  def self.ordered_all
+    self.all.order(:name)
   end
 
 

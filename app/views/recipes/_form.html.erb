@@ -18,9 +18,9 @@
     <% if !@recipe.recipe_ingredients.empty? %>
           <%= f.fields_for :recipe_ingredients do |rif| %>
           <li>
-            <%= rif.collection_select  :ingredient_id, Ingredient.all.order(:name),:id,:name %>
+            <%= rif.collection_select  :ingredient_id, Ingredient.ordered_all,:id,:name %>
             <%= rif.label :quantity %>
-            <%= rif.number_field :quantity, :step => 0.1%>
+            <%= rif.text_field :quantity%>
             <%= rif.label :unit %>
             <%= rif.select :unit, ['','tbs','tsp','cups','quarts','pints','grams','pounds','units'] %>
           </li>
@@ -29,9 +29,9 @@
     <% 10.times do |x| %>
     <li>
       <%= f.fields_for :recipe_ingredients, @recipe.recipe_ingredients.build do |rif| %>
-        <%= rif.collection_select  :ingredient_id, Ingredient.all.order(:name),:id,:name, include_blank: true %>
+        <%= rif.collection_select  :ingredient_id, Ingredient.ordered_all,:id,:name, include_blank: true %>
         <%= rif.label :quantity %>
-        <%= rif.number_field :quantity %>
+        <%= rif.text_field :quantity %>
         <%= rif.label :unit %>
         <%= rif.select :unit, ['','tbs','tsp','cups','quarts','pints','grams','pounds','units'] %>
       <% end %>

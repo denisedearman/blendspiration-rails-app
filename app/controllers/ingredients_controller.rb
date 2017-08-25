@@ -18,7 +18,7 @@ class IngredientsController < ApplicationController
   end
 
   def index
-    @ingredients = Ingredient.all
+    @ingredients = Ingredient.ordered_all
   end
 
   private
