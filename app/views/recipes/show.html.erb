@@ -1,0 +1,11 @@
+<h1><%= @recipe.name %></h1>
+
+<h2>Ingredients</h2>
+<ul>
+  <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
+    <li><%= recipe_ingredient.quantity %> <%= recipe_ingredient.unit unless recipe_ingredient.unit == "unit"%> <%= recipe_ingredient.ingredient.name %></li>
+  <% end %>
+</ul>
+
+<h2>Directions</h2>
+<p><%=@recipe.description%></p>
