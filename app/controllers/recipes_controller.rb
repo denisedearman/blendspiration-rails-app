@@ -1,5 +1,10 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update]
+
+  def simple
+    @recipes = Recipe.simple_recipes
+  end
+
   def index
     if params[:user_id]
       user = User.find_by(params[:user_id])
@@ -41,8 +46,9 @@ class RecipesController < ApplicationController
     end
   end
 
-  def simple
-    @recipes = Recipe.simple_recipes
+
+
+  def show
   end
 
 
