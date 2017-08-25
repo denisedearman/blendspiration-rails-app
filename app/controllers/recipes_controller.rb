@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show, :edit, :update]
+  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
 
   def simple
     @recipes = Recipe.simple_recipes
@@ -46,6 +46,10 @@ class RecipesController < ApplicationController
     end
   end
 
+  def destroy
+    @recipe.destroy
+    redirect_to recipes_path
+  end
 
 
   def show

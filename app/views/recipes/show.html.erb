@@ -13,5 +13,6 @@
 
   <% if current_user == @recipe.user %>
     <button class="btn btn-success"><%=link_to "Edit Recipe", edit_recipe_path(@recipe) %></button>
+    <button class="btn btn-error"><%= link_to "Delete", @song, method: :delete, data: { confirm: "Really?" } %></button>
   <% end %>
 </div>
