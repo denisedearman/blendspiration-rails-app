@@ -20,7 +20,7 @@
           <li>
             <%= rif.collection_select  :ingredient_id, Ingredient.all.order(:name),:id,:name %>
             <%= rif.label :quantity %>
-            <%= rif.number_field :quantity%>
+            <%= rif.number_field :quantity, :step => 0.1%>
             <%= rif.label :unit %>
             <%= rif.select :unit, ['','tbs','tsp','cups','quarts','pints','grams','pounds','units'] %>
           </li>
