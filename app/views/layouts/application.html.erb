@@ -3,23 +3,18 @@
   <head>
     <title>BlendspirationRailsApp</title>
     <%= csrf_meta_tags %>
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/css/rating.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <ul>
-    <%= link_to "Home", "/" %>
-    <% if current_user %>
-      <li>Hello <%= link_to current_user.email, user_recipes_path(current_user) %></li>
-      <li><%= link_to "Sign out", destroy_user_session_path , method: "delete"%></li>
-    <% else %>
-      <li><%= link_to "Sign in", new_user_session_path %></li>
-      <li><%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %></li>
-      <li><%= link_to "Sign up", new_user_registration_path %></li>
-    <% end %>
-  </ul>
-
   <body>
+    <%= render 'layouts/navbar' %>
     <%= yield %>
+  <script src="/js/bootstrap.min.js"></script>
   </body>
 </html>
