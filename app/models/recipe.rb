@@ -13,4 +13,10 @@ class Recipe < ApplicationRecord
       end
     end
   end
+
+  def self.simple_recipes
+    all.joins(:recipe_ingredients).having('COUNT(ingredient_id) < 6').group('recipe_id')
+  end
+
+
 end

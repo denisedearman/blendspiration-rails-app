@@ -28,6 +28,9 @@ class RecipesController < ApplicationController
   end
 
   def edit
+    if current_user != @recipe.user
+      redirect_to @recipe
+    end
   end
 
   def update
@@ -36,6 +39,10 @@ class RecipesController < ApplicationController
     else
       redirect_to edit_recipe_path(@recipe)
     end
+  end
+
+  def simple
+    @recipes = Recipe.simple_recipes
   end
 
 
