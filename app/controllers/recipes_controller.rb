@@ -6,15 +6,12 @@ class RecipesController < ApplicationController
   end
 
   def index
-    if params[:user_id]
-      if current_user
-        @recipes = current_user.recipes
-      else
-        redirect_to recipes_path, alert: "Could not find user"
-      end
+    if params[:user_id] && current_user
+      @recipes = current_user.recipes
     else
       @recipes = Recipe.ordered_all
     end
+    render json: @recipes
   end
 
   def create

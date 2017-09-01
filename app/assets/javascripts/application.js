@@ -2,5 +2,5 @@
 //= require turbolinks
 //= require jquery
 //= require jquery_ujs
-//= require recipes.js
+//= require recipes
 //= require bootstrap.min
