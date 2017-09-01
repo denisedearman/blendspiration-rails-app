@@ -16,6 +16,8 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'omniauth-google-oauth2'
 gem 'active_model_serializers'
+gem 'jquery-rails'
+gem 'bootstrap-sass'
 
 group :development, :test do
   gem "rspec-rails"

@@ -11,7 +11,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <%if current_user%>
-        <li><%= link_to 'Recipes', recipes_path %></li>
+        <li><a><button class= "btn-inverse" id="recipeIndex">Recipes</button></a></li>
         <li><%= link_to 'Create Recipe', new_recipe_path %></li>
         <li><%= link_to 'Ingredients', ingredients_path %></li>
         <%end%>
