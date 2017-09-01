@@ -15,17 +15,17 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">Blendspiration</a>
+          <a class="navbar-brand" href="#">Blendspiration</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
-          <ul class="nav navbar-nav">
+          <ul class="nav navbar-nav" id="navLeft">
             <%if current_user%>
             <li><a><button class= "btn-inverse" id="recipeIndex">Recipes</button></a></li>
             <li><%= link_to 'Create Recipe', new_recipe_path %></li>
             <li><%= link_to 'Ingredients', ingredients_path %></li>
             <%end%>
           </ul>
-          <ul class="nav navbar-nav navbar-right">
+          <ul class="nav navbar-nav navbar-right" id="navRight">
             <%if current_user%>
             <li><%= link_to current_user.email, user_recipes_path(current_user) %></li>
             <li><%= link_to "Sign out", destroy_user_session_path , method: "delete"%></li>
@@ -39,7 +39,7 @@
       </div>
     </nav>
 
-  
+
     <%= yield %>
   </body>
 </html>

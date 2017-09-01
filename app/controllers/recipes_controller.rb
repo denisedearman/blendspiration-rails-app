@@ -49,6 +49,7 @@ class RecipesController < ApplicationController
 
 
   def show
+    render json: @recipe
   end
 
 
