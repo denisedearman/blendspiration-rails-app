@@ -4,6 +4,9 @@ $(document).ready(function(){
 
 
 function attachListeners(){
+  $('#blendspiration').on('click', function(){
+    setHomePage();
+  })
   $('#recipeIndex').on('click', function(){
     displayRecipesIndex();
   });
@@ -12,6 +15,8 @@ function attachListeners(){
 function addBackgroundPhoto(){
   document.getElementById("blueberry").style.visibility = "visible";
   $("#text-white").text("Welcome to Blendspiration");
+  $("#mainTitle").text("");
+  $("#mainContent").text("");
 }
 
 
@@ -40,9 +45,11 @@ function loadRecipe(recipe_id){
   })
 }
 
-
-
 function removeBackgroundPhoto(){
   document.getElementById("blueberry").style.visibility = "hidden";
   $("#text-white").text("");
+}
+
+function setHomePage(){
+  addBackgroundPhoto();
 }
