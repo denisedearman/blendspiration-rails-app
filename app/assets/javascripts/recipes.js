@@ -13,6 +13,9 @@ function attachListeners(){
   $('#ingredientIndex').on('click', function(){
     displayIngredientsIndex();
   })
+  $('#userRecipesIndex').on('click', function(){
+    displayUserRecipesIndex();
+  })
 }
 
 function addBackgroundPhoto(){
@@ -40,6 +43,17 @@ function displayRecipesIndex(){
   removeBackgroundPhoto();
   $("#mainTitle").text("Recipes");
   $.get('/recipes', function(data) {
+    var recipes = data;
+    $("#mainContent").html('<ul class="recipeList"></ul>');
+    recipes.forEach(displayRecipeItem);
+  });
+}
+
+function displayUserRecipesIndex(){
+  removeBackgroundPhoto();
+  var user_id = $("#userId").text();
+  $("#mainTitle").text("Recipes");
+  $.get(`/users/${user_id}/recipes`, function(data) {
     var recipes = data;
     $("#mainContent").html('<ul class="recipeList"></ul>');
     recipes.forEach(displayRecipeItem);

@@ -18,7 +18,8 @@
       </ul>
       <ul class="nav navbar-nav navbar-right" id="navRight">
         <%if current_user%>
-        <li><%= link_to current_user.email, user_recipes_path(current_user) %></li>
+        <li class="hidden" id="userId"><%=current_user.id%></li>
+        <li><a><button class= "btn-inverse" id="userRecipesIndex"><%=current_user.email%></button></a></li>
         <li><%= link_to "Sign out", destroy_user_session_path , method: "delete"%></li>
         <%else%>
         <li><%= link_to "Sign in", new_user_session_path %></li>

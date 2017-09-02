@@ -23,3 +23,7 @@ img.bg {
   textarea{
     width: auto;
   }
+
+.hidden{
+  visibility: hidden;
+}
