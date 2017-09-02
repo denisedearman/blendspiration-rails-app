@@ -14,11 +14,13 @@ class IngredientsController < ApplicationController
   end
 
   def show
-    @ingredient = Ingredient.find_by(params[:id])
+    @ingredient = Ingredient.find(params[:id])
+    render json: @ingredient
   end
 
   def index
     @ingredients = Ingredient.ordered_all
+    render json: @ingredients
   end
 
   private
