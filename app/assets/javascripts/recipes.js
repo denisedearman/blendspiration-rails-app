@@ -19,6 +19,10 @@ function addBackgroundPhoto(){
   $("#mainContent").text("");
 }
 
+function displayRecipeIngredient(recipe_ingredient){
+  $("#mainContent ul").append(`<li> ${recipe_ingredient.ingredient.name} ${recipe_ingredient.quantity} ${recipe_ingredient.unit}`);
+}
+
 
 function displayRecipeItem(recipe){
   $("#mainContent ul").append(`<li><button id="recipeid-${recipe.id}">${recipe.name} - ${recipe.user.email}</button></li>`);
@@ -42,7 +46,8 @@ function loadRecipe(recipe_id){
   $.get('/recipes/' + recipe_id, function(data){
     var recipe = data;
     $("#mainTitle").text(recipe.name)
-    $("#mainContent").html('<p></p><button id="recipe-next">Next</button>')
+    $("#mainContent").html('<ul></ul><p></p><button id="recipe-next">Next</button>')
+    recipe.recipe_ingredients.forEach(displayRecipeIngredient)
     $("#mainContent p").text(recipe.description)
     $('#recipe-next').on('click', function(){
       loadRecipe(recipe.id + 1);
