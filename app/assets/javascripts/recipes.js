@@ -41,7 +41,11 @@ function loadRecipe(recipe_id){
   $.get('/recipes/' + recipe_id, function(data){
     var recipe = data;
     $("#mainTitle").text(recipe.name)
-    $("#mainContent").text(recipe.description)
+    $("#mainContent").html('<p></p><button id="recipe-next">Next</button>')
+    $("#mainContent p").text(recipe.description)
+    $('#recipe-next').on('click', function(){
+      loadRecipe(recipe.id + 1);
+    })
   })
 }
 

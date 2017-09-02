@@ -23,5 +23,9 @@ class Recipe < ApplicationRecord
     self.all.order(:name)
   end
 
+  def self.next_id(current_id)
+    all.where('id > ' + current_id.to_s).order('id ASC').limit(1)
+  end
+
 
 end

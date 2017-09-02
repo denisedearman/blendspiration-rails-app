@@ -18,6 +18,7 @@ gem 'omniauth-google-oauth2'
 gem 'active_model_serializers'
 gem 'jquery-rails'
 gem 'bootstrap-sass'
+gem 'kaminari'
 
 group :development, :test do
   gem "rspec-rails"
