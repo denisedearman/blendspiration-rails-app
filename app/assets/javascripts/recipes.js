@@ -32,6 +32,7 @@ function displayRecipesIndex(){
   $("#mainTitle").text("Recipes");
   $.get('/recipes', function(data) {
     var recipes = data;
+    debugger;
     $("#mainContent").html('<ul class="recipeList"></ul>');
     recipes.forEach(displayRecipeItem);
   });
