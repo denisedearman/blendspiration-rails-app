@@ -95,6 +95,19 @@ function displayRecipesIndex(){
   $("#mainTitle").text("Recipes");
   $.get('/recipes', function(data) {
     var recipes = data;
+    $("#mainContent").html('<ul class="recipeList"></ul><button id="simpleRecipes">View Simple Recipes</button>');
+    $('#simpleRecipes').on('click', function(){
+      displaySimpleRecipesIndex();
+    })
+    recipes.forEach(displayRecipeItem);
+  });
+}
+
+function displaySimpleRecipesIndex(){
+  removeBackgroundPhoto();
+  $("#mainTitle").text("Simple Recipes - 3 Ingredients or Less!");
+  $.get('/recipes/simple-recipes', function(data) {
+    var recipes = data;
     $("#mainContent").html('<ul class="recipeList"></ul>');
     recipes.forEach(displayRecipeItem);
   });

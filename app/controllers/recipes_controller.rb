@@ -3,6 +3,7 @@ class RecipesController < ApplicationController
 
   def simple
     @recipes = Recipe.simple_recipes
+    render json: @recipes
   end
 
   def index
