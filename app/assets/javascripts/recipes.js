@@ -95,7 +95,7 @@ function displayRecipesIndex(){
   $("#mainTitle").text("Recipes");
   $.get('/recipes', function(data) {
     var recipes = data;
-    $("#mainContent").html('<ul class="recipeList"></ul><button id="simpleRecipes">View Simple Recipes</button>');
+    $("#mainContent").html('<ul class="recipeList"></ul><button id="simpleRecipes" class="btn btn-success">View Simple Recipes</button>');
     $('#simpleRecipes').on('click', function(){
       displaySimpleRecipesIndex();
     })
@@ -128,7 +128,7 @@ function loadRecipe(recipe_id){
   $.get('/recipes/' + recipe_id, function(data){
     var recipe = data;
     $("#mainTitle").text(recipe.name)
-    $("#mainContent").html('<h3></h3><ul></ul><p></p><button id="recipe-next">Next</button>')
+    $("#mainContent").html('<h3></h3><ul></ul><p></p><button id="recipe-next" >Next</button>')
     recipe.recipe_ingredients.forEach(displayRecipeIngredient)
     $("#mainContent h3").text(recipe.user.email)
     $("#mainContent p").text(recipe.description)
