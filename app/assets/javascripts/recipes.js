@@ -26,7 +26,7 @@ function Recipe(attributes){
   this.name = attributes.name
   this.description = attributes.description
   this.user = attributes.user
-  this.recipe_ingredients  = attrbutes.recipe_ingredients
+  this.recipe_ingredients  = attributes.recipe_ingredients
 }
 
 function addBackgroundPhoto(){
@@ -37,11 +37,35 @@ function addBackgroundPhoto(){
 }
 
 function createRecipe(){
-  alert("Create Recipe");
+  var name = document.getElementById("recipe_name").value;
+  var description = document.getElementById("recipe_description").value;
+  var recipe_ingredients = {};
+  for(var i = 0; i < 10; i++){
+    var quantity = document.getElementById(`recipe_recipe_ingredients_attributes_${i}_quantity`).value;
+    var unit = document.getElementById(`recipe_recipe_ingredients_attributes_${i}_unit`).value;
+    var ingredient_id = document.getElementById(`recipe_recipe_ingredients_attributes_${i}_ingredient_id`).value;
+    recipe_ingredients[i.toString()] = {quantity: quantity, unit: unit, ingredient_id: ingredient_id}
+  }
+  params = {
+    recipe:{
+            name: name,
+            description: description,
+            recipe_ingredients_attributes: recipe_ingredients
+            }
+          };
+  $.ajax({
+    url: '/recipes',
+    data: params,
+    dataType: "json",
+    method: "POST"
+  })
+  .success(function(json){
+    var recipe = new Recipe(json);
+    displayRecipesIndex();
+  })
 }
 
 function displayRecipeForm(){
-  debugger;
   removeBackgroundPhoto();
   var createRecipeTemplate = Handlebars.compile($("#recipe-form-template").html());
   $.get('/ingredients', function(data) {

@@ -9,7 +9,7 @@ class Recipe < ApplicationRecord
     self.recipe_ingredients.clear
     recipe_ingredient_attributes.values.each do |recipe_ingredient_attribute|
       if recipe_ingredient_attribute[:quantity] && recipe_ingredient_attribute[:quantity].to_f > 0
-        recipe_ingredient = RecipeIngredient.find_or_create_by(recipe_ingredient_attribute)
+        recipe_ingredient = RecipeIngredient.new(recipe_ingredient_attribute)
         self.recipe_ingredients << recipe_ingredient
       end
     end

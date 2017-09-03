@@ -16,12 +16,9 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
-    if @recipe.save
-      redirect_to recipes_path
-    else
-      render 'new'
-    end
-
+    @recipe.user = current_user
+    @recipe.save
+    render json: @recipe
   end
 
   def new
@@ -59,6 +56,6 @@ class RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:name, :description, :user_id, recipe_ingredients_attributes: [:quantity, :unit, :ingredient_id])
+    params.require(:recipe).permit(:name, :description, recipe_ingredients_attributes: [:quantity, :unit, :ingredient_id])
   end
 end
