@@ -45,6 +45,7 @@ function loadIngredient(ingredient_id){
 }
 
 function displayIngredientForm(){
+  debugger;
   removeBackgroundPhoto();
   var createIngredientTemplate = Handlebars.compile(document.getElementById("ingredient-form-template").innerHTML);
   $("#mainTitle").text("Create Ingredient");
