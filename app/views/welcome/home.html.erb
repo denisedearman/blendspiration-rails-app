@@ -10,3 +10,33 @@
     <input type="submit">
   </form>
 </script>
+
+<script id="recipe-form-template" type="text/x-handlebars-template">
+  <form id="recipe-form" onsubmit="{{submitAction}};return false;">
+      Name: <input type="text"name="recipe[name]" id="recipe_name"><br>
+     <h2>Ingredients</h2>
+     <ol>
+       <li>
+           <select name="recipe[recipe_ingredients_attributes][0][ingredient_id]" id="recipe_recipe_ingredients_attributes_0_ingredient_id"><option value=""></option>
+            <option value="46">Almond</option>
+            <option value="50">Watermelon Juice</option></select>
+           <label for="recipe_recipe_ingredients_attributes_0_quantity">Quantity</label>
+           <input type="text" name="recipe[recipe_ingredients_attributes][0][quantity]" id="recipe_recipe_ingredients_attributes_0_quantity" />
+           <label for="recipe_recipe_ingredients_attributes_0_unit">Unit</label>
+           <select name="recipe[recipe_ingredients_attributes][0][unit]" id="recipe_recipe_ingredients_attributes_0_unit"><option value=""></option>
+            <option value="tbs">tbs</option>
+            <option value="tsp">tsp</option>
+            <option value="cups">cups</option>
+            <option value="quarts">quarts</option>
+            <option value="pints">pints</option>
+            <option value="grams">grams</option>
+            <option value="pounds">pounds</option>
+            <option value="units">units</option></select>
+       </li>
+    </ol>
+     <label for="recipe_description">Description</label><br>
+     <textarea name="recipe[description]" id="recipe_description"></textarea><br>
+     <input value="1" type="hidden" name="recipe[user_id]" id="recipe_user_id" />
+     <input type="submit">
+  </form>
+</script>

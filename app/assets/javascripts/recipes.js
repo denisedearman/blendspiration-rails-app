@@ -7,6 +7,9 @@ function attachListeners(){
   $('#blendspiration').on('click', function(){
     setHomePage();
   })
+  $('#createRecipe').on('click', function(){
+    displayCreateRecipeForm();
+  })
   $('#recipeIndex').on('click', function(){
     displayRecipesIndex();
   });
@@ -18,11 +21,32 @@ function attachListeners(){
   })
 }
 
+function Recipe(attributes){
+  this.id = attributes.id
+  this.name = attributes.name
+  this.description = attributes.description
+  this.user = attributes.user
+  this.recipe_ingredients  = attrbutes.recipe_ingredients
+}
+
+$(function(){
+  Recipe.templateSource = $("#recipe-template").html();
+  Recipe.template = Handlebars.compile(Recipe.templateSource);
+})
+
+Recipe.prototype.renderRecipe = function(){
+  return Recipe.template(this)
+}
+
 function addBackgroundPhoto(){
   document.getElementById("blueberry").style.visibility = "visible";
   $("#text-white").text("Welcome to Blendspiration");
   $("#mainTitle").text("");
   $("#mainContent").text("");
+}
+
+function displayCreateRecipeForm(){
+
 }
 
 
