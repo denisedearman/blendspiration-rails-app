@@ -15,17 +15,17 @@
       Name: <input type="text"name="recipe[name]" id="recipe_name"><br>
      <h2>Ingredients</h2>
      <ol>
-
+       {{#each recipe_ingredients}}
        <li>
-           <select name="recipe[recipe_ingredients_attributes][0][ingredient_id]" id="recipe_recipe_ingredients_attributes_0_ingredient_id"><option value=""></option>
-             {{#each ingredients}}
+           <select name="recipe[recipe_ingredients_attributes][{{id}}][ingredient_id]" id="recipe_recipe_ingredients_attributes_{{id}}_ingredient_id"><option value=""></option>
+             {{#each ../ingredients}}
              <option value="{{id}}">{{name}}</option>
              {{/each}}
           </select>
-           <label for="recipe_recipe_ingredients_attributes_0_quantity">Quantity</label>
-           <input type="text" name="recipe[recipe_ingredients_attributes][0][quantity]" id="recipe_recipe_ingredients_attributes_0_quantity" />
-           <label for="recipe_recipe_ingredients_attributes_0_unit">Unit</label>
-           <select name="recipe[recipe_ingredients_attributes][0][unit]" id="recipe_recipe_ingredients_attributes_0_unit"><option value=""></option>
+           <label for="recipe_recipe_ingredients_attributes_{{id}}_quantity">Quantity</label>
+           <input type="text" name="recipe[recipe_ingredients_attributes][{{id}}][quantity]" id="recipe_recipe_ingredients_attributes_{{id}}_quantity" />
+           <label for="recipe_recipe_ingredients_attributes_{{id}}_unit">Unit</label>
+           <select name="recipe[recipe_ingredients_attributes][{{id}}][unit]" id="recipe_recipe_ingredients_attributes_{{id}}_unit"><option value=""></option>
             <option value="tbs">tbs</option>
             <option value="tsp">tsp</option>
             <option value="cups">cups</option>
@@ -33,8 +33,9 @@
             <option value="pints">pints</option>
             <option value="grams">grams</option>
             <option value="pounds">pounds</option>
-            <option value="units">units</option></select>
+            <option value="units">units</option></select>  
        </li>
+       {{/each}}
 
     </ol>
      <label for="recipe_description">Description</label><br>

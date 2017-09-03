@@ -47,7 +47,7 @@ function displayRecipeForm(){
   $.get('/ingredients', function(data) {
      var ingredientsList = data;
      $("#mainTitle").text("Create Recipe");
-     var templateData = {'submitAction': 'createRecipe()', 'ingredients': ingredientsList};
+     var templateData = {'submitAction': 'createRecipe()', 'ingredients': ingredientsList, 'recipe_ingredients': [{id: 0},{id: 1},{id: 2}, {id: 3}, {id: 4}, {id: 5},{id: 6}, {id: 7}, {id: 8}, {id: 9}]};
      $("#mainContent").html(createRecipeTemplate(templateData));
   })
 }
