@@ -4,3 +4,9 @@
   <h1 id="mainTitle"></h1>
   <div id="mainContent"></div>
 </div>
+<script id="ingredient-form-template" type="text/x-handlebars-template">
+  <form id="ingredient-form" onsubmit="{{submitAction}};return false;">
+    Name: <input type="text" id="name">
+    <input type="submit">
+  </form>
+</script>

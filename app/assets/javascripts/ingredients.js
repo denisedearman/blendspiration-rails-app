@@ -1,3 +1,17 @@
+function Ingredient(attributes){
+  this.id = attributes.id
+  this.name = attributes.name
+}
+
+$(function(){
+  Ingredient.templateSource = $("#ingredient-template").html();
+  Ingredient.template = Handlebars.compile(Ingredient.templateSource);
+})
+
+Ingredient.prototype.renderLI = function(){
+  return Ingredient.template(this)
+}
+
 function displayIngredientsIndex(){
   removeBackgroundPhoto();
   $("#mainTitle").text("Ingredients");
@@ -24,5 +38,28 @@ function loadIngredient(ingredient_id){
     $('#ingredient-next').on('click', function(){
       loadRecipe(ingredient.id + 1);
     })
+  })
+}
+
+function displayIngredientForm(){
+  removeBackgroundPhoto();
+  var createIngredientTemplate = Handlebars.compile(document.getElementById("ingredient-form-template").innerHTML);
+  $("#mainTitle").text("Create Ingredient");
+  $("#mainContent").html(createIngredientTemplate({'submitAction': 'createIngredient()'}));
+}
+
+
+function createIngredient(){
+  var name = document.getElementById("name").value;
+  params = {name: name};
+  $.ajax({
+    url: '/ingredients',
+    data: params,
+    dataType: "json",
+    method: "POST"
+  })
+  .success(function(json){
+    var ingredient = new Ingredient(json);
+    displayIngredientsIndex();
   })
 }

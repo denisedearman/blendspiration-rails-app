@@ -5,12 +5,8 @@ class IngredientsController < ApplicationController
   end
 
   def create
-    @ingredient = Ingredient.new(ingredient_params)
-    if @ingredient.save
-      redirect_to ingredients_path
-    else
-      render :new
-    end
+    @ingredient = Ingredient.create(ingredient_params)
+    render json: @ingredient, status: 201
   end
 
   def show
@@ -26,6 +22,6 @@ class IngredientsController < ApplicationController
   private
 
   def ingredient_params
-    params.require(:ingredient).permit(:name)
+    params.permit(:name)
   end
 end

@@ -16,6 +16,9 @@ function attachListeners(){
   $('#userRecipesIndex').on('click', function(){
     displayUserRecipesIndex();
   })
+  $('#newIngredient').on('click', function(){
+    displayIngredientForm();
+  })
 }
 
 function addBackgroundPhoto(){
