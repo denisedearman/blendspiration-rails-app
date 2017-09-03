@@ -17,7 +17,10 @@ function displayIngredientsIndex(){
   $("#mainTitle").text("Ingredients");
   $.get('/ingredients', function(data) {
     var ingredients = data;
-    $("#mainContent").html('<ul class="ingredientList"></ul>');
+    $("#mainContent").html('<p><button class= "btn btn-success" id="newIngredient">Create Ingredient</button></p><ul class="ingredientList"></ul>');
+    $('#newIngredient').on('click', function(){
+      displayIngredientForm();
+    })
     ingredients.forEach(displayIngredientItem);
   });
 }
