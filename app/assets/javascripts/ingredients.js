@@ -39,7 +39,7 @@ function loadIngredient(ingredient_id){
     $("#mainContent").html('<ul></ul><button id="ingredient-next">Next</button>')
     ingredient.recipes.forEach(displayRecipeItem)
     $('#ingredient-next').on('click', function(){
-      loadRecipe(ingredient.id + 1);
+      loadIngredient(ingredient.id + 1);
     })
   })
 }
@@ -64,7 +64,7 @@ function createIngredient(){
   .success(function(json){
     var ingredient = new Ingredient(json);
     if(!$("#addedIngredients").length){
-      $("#mainContent").append(`<h4 id="addedIngredients">Added Ingredients</h4>`)
+      $("#mainContent").append(`<h2 id="addedIngredients">Added Ingredients</h2>`)
     }
     $("#mainContent").append(ingredient.renderLI())
   })

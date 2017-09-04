@@ -13,6 +13,17 @@
     <input type="submit">
   </form>
 </script>
+<script id="recipe-template" type="text/x-handlebars-template">
+    <h1 id="recipe_name">{{name}}</h1>
+    <h3 id="recipe_user">{{user.email}}</h3>
+     <h2>Ingredients</h2>
+     <ol>
+       {{#each recipe_ingredients}}
+       <li>{{ingredient.name}} {{quantity}} {{unit}} </li>
+       {{/each}}
+    </ol>
+     Description<p name="recipe[description]" id="recipe_description">{{description}}</p><br>
+</script>
 <script id="recipe-form-template" type="text/x-handlebars-template">
   <form id="recipe-form" onsubmit="{{submitAction}};return false;">
       Name: <input type="text"name="recipe[name]" id="recipe_name"><br>

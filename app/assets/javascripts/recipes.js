@@ -29,6 +29,15 @@ function Recipe(attributes){
   this.recipe_ingredients  = attributes.recipe_ingredients
 }
 
+$(function(){
+  Recipe.templateSource = $("#recipe-template").html();
+  Recipe.template = Handlebars.compile(Recipe.templateSource);
+})
+
+Recipe.prototype.renderRecipe = function(){
+  return Recipe.template(this)
+}
+
 function addBackgroundPhoto(){
   document.getElementById("blueberry").style.visibility = "visible";
   $("#text-white").text("Welcome to Blendspiration");
@@ -61,7 +70,10 @@ function createRecipe(){
   })
   .success(function(json){
     var recipe = new Recipe(json);
-    displayRecipesIndex();
+    if(!$("#addedRecipes").length){
+      $("#mainContent").append(`<h4 id="addedRecipes">Added Recipes</h4>`)
+    }
+    $("#mainContent").append(recipe.renderRecipe())
   })
 }
 
@@ -74,12 +86,6 @@ function displayRecipeForm(){
      var templateData = {'submitAction': 'createRecipe()', 'ingredients': ingredientsList, 'recipe_ingredients': [{id: 0},{id: 1},{id: 2}, {id: 3}, {id: 4}, {id: 5},{id: 6}, {id: 7}, {id: 8}, {id: 9}]};
      $("#mainContent").html(createRecipeTemplate(templateData));
   })
-}
-
-
-
-function displayRecipeIngredient(recipe_ingredient){
-  $("#mainContent ul").append(`<li> ${recipe_ingredient.ingredient.name} ${recipe_ingredient.quantity} ${recipe_ingredient.unit}`);
 }
 
 
@@ -126,13 +132,12 @@ function displayUserRecipesIndex(){
 
 function loadRecipe(recipe_id){
   $.get('/recipes/' + recipe_id, function(data){
-    var recipe = data;
-    $("#mainTitle").text(recipe.name)
-    $("#mainContent").html('<h3></h3><ul></ul><p></p><button id="recipe-next" >Next</button>')
-    recipe.recipe_ingredients.forEach(displayRecipeIngredient)
-    $("#mainContent h3").text(recipe.user.email)
-    $("#mainContent p").text(recipe.description)
-    $('#recipe-next').on('click', function(){
+    var recipe = new Recipe(data);
+    $("#mainTitle").text("");
+    $("#mainContent").text("");
+    $("#mainContent").append(recipe.renderRecipe())
+    $("#mainContent").append(`<button id="recipe-next">Next</button>`)
+     $('#recipe-next').on('click', function(){
       loadRecipe(recipe.id + 1);
     })
   })
