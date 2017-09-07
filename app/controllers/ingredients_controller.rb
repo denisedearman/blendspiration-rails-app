@@ -14,7 +14,7 @@ class IngredientsController < ApplicationController
   end
 
   def show
-    @ingredient = Ingredient.find_by(params[:id])
+    @ingredient = Ingredient.find(params[:id])
   end
 
   def index
