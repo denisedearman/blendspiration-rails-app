@@ -1,4 +1,8 @@
 <div class="container-fluid">
+  <form action="/recipes/search-results" method="get">
+    Search Recipes<input type="text" name="search_terms" id="search_terms"></input>
+    <input type="submit">
+  </form>
   <h1>Recipes</h1>
   <ul>
     <%= render @recipes %>

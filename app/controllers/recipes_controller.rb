@@ -5,6 +5,11 @@ class RecipesController < ApplicationController
     @recipes = Recipe.simple_recipes
   end
 
+  def search
+    @recipes = Recipe.all.select{|recipe| recipe.name.downcase.include?(params[:search_terms].downcase)}
+    render 'index'
+  end
+
   def index
     if params[:user_id]
       if current_user
@@ -18,7 +23,7 @@ class RecipesController < ApplicationController
   end
 
   def create
-    @recipe = Recipe.new(recipe_params)
+    @recipe = current_user.recipes.build(recipe_params)
     if @recipe.save
       redirect_to recipes_path
     else
@@ -61,6 +66,6 @@ class RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:name, :description, :user_id, recipe_ingredients_attributes: [:quantity, :unit, :ingredient_id])
+    params.require(:recipe).permit(:name, :description, recipe_ingredients_attributes: [:quantity, :unit, :ingredient_id])
   end
 end
